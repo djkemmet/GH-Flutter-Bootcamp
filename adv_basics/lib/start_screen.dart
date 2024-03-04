@@ -24,12 +24,14 @@ class StartScreenView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 64),
-              TextButton(
-                child: const Text(
+              OutlinedButton.icon(
+                icon: const Icon(Icons.start),
+                onPressed: () {},
+                label: const Text(
                   'Start Quiz',
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () {},
+                
               ),
             ],
           );
