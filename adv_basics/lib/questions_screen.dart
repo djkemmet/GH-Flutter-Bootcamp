@@ -17,36 +17,17 @@ class _QuestionsScreenViewState extends State<QuestionsScreenView> {
   Widget build(BuildContext context) {
     final currentQuestion = questions[0];
 
-
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
+      children: [
         Text(
           currentQuestion.Question,
           style: const TextStyle(color: Colors.white),
         ),
         const SizedBox(height: 30),
-        AnswerButton(
-          value: currentQuestion.Answers[0],
-          onTap: () {},
-        ),
-        const SizedBox(height: 12),
-        AnswerButton(
-          value: currentQuestion.Answers[1],
-          onTap: () {},
-        ),
-        const SizedBox(height: 12),
-        AnswerButton(
-          value: currentQuestion.Answers[2],
-          onTap: () {},
-        ),
-        const SizedBox(height: 12),
-        AnswerButton(
-          value: currentQuestion.Answers[3],
-          onTap: () {},
-        ),
-        const SizedBox(height: 12),
+        ...currentQuestion.Answers.map((item){
+          return AnswerButton(value: item ,onTap: (){});
+        }),
       ],
     );
   }
