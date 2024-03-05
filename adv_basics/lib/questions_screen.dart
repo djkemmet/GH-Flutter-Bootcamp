@@ -17,18 +17,25 @@ class _QuestionsScreenViewState extends State<QuestionsScreenView> {
   Widget build(BuildContext context) {
     final currentQuestion = questions[0];
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          currentQuestion.Question,
-          style: const TextStyle(color: Colors.white),
-        ),
-        const SizedBox(height: 30),
-        ...currentQuestion.Answers.map((item){
-          return AnswerButton(value: item ,onTap: (){});
-        }),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            currentQuestion.Question,
+            style: const TextStyle(color: Colors.white),
+          ),
+          const SizedBox(height: 30),
+          ...currentQuestion.Answers.map((item){
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AnswerButton(value: item ,onTap: (){}),
+            );
+          }),
+        ],
+      ),
     );
   }
 }
