@@ -13,22 +13,13 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  Widget? activeScreen;
-  
-  
-  @override
-  void initState() {
-    activeScreen = StartScreenView(switchScreen);
-    super.initState();
-  }
+  var activeScreen = 'start-screen';
 
-  void switchScreen(){
+  void switchScreen() {
     setState(() {
-      activeScreen = QuestionsScreenView();
+      activeScreen = 'questions-screen';
     });
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +27,19 @@ class _QuizState extends State<Quiz> {
       home: Scaffold(
         backgroundColor: Colors.deepPurple,
         body: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 78, 13, 151),
-                Color.fromARGB(255, 107, 15, 168)
-              ],
-            )),
-            child: Center(child: activeScreen)),
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 78, 13, 151),
+              Color.fromARGB(255, 107, 15, 168)
+            ],
+          )),
+          child: Center(
+            child: activeScreen == 'start-screen'
+                ? StartScreenView(switchScreen)
+                : const QuestionsScreenView(),
+          ),
+        ),
       ),
     );
   }
