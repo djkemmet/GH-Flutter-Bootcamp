@@ -1,5 +1,6 @@
 // needs to be a stateful widget
 import 'package:flutter/material.dart';
+import 'package:adv_basics/answer_button.dart';
 
 class QuestionsScreenView extends StatefulWidget {
   const QuestionsScreenView({super.key});
@@ -16,16 +17,31 @@ class _QuestionsScreenViewState extends State<QuestionsScreenView> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const Text("The Question Text"),
+        const Text(
+          "The Question Text",
+          style: TextStyle(color: Colors.white),
+        ),
         const SizedBox(height: 30),
-        ElevatedButton(onPressed: () {}, child: const Text('Answer 1')),
-        const SizedBox(height:12),
-        ElevatedButton(onPressed: () {}, child: const Text('Answer 2')),
-        const SizedBox(height:12),
-        ElevatedButton(onPressed: () {}, child: const Text('Answer 3')),
-        const SizedBox(height:12),
-        ElevatedButton(onPressed: () {}, child: const Text('Answer 4')),
-        const SizedBox(height:12),
+        AnswerButton(
+          value: "Answer 1",
+          onTap: () {},
+        ),
+        const SizedBox(height: 12),
+        AnswerButton(
+          value: "Answer 2",
+          onTap: () {},
+        ),
+        const SizedBox(height: 12),
+        AnswerButton(
+          value: "Answer 3",
+          onTap: () {},
+        ),
+        const SizedBox(height: 12),
+        AnswerButton(
+          value: "Answer 4",
+          onTap: () {},
+        ),
+        const SizedBox(height: 12),
       ],
     );
   }
