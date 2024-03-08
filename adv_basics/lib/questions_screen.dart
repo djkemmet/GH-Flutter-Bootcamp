@@ -13,9 +13,21 @@ class QuestionsScreenView extends StatefulWidget {
 }
 
 class _QuestionsScreenViewState extends State<QuestionsScreenView> {
+  
+  // Create a variable that stores the question number we're on.
+  int currentQuestionIndex = 0;
+
+  // Create a function to update our state that increments
+  // the currentQuestionIndex vale. 
+  void answerQuestion() {
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -32,7 +44,7 @@ class _QuestionsScreenViewState extends State<QuestionsScreenView> {
           ...currentQuestion.getShuffledAnswers().map((item){
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: AnswerButton(value: item ,onTap: (){}),
+              child: AnswerButton(value: item ,onTap: answerQuestion),
             );
           }),
         ],
