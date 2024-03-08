@@ -6,5 +6,11 @@ class QuizQuestion {
   final String Question;
   final List<String> Answers;
 
+  List<String> getShuffledAnswers (){
+
+    final shuffledList =  List.of(Answers);
+    shuffledList.shuffle();
+    return shuffledList;
+  }
 
 }

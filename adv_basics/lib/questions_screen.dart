@@ -26,9 +26,10 @@ class _QuestionsScreenViewState extends State<QuestionsScreenView> {
           Text(
             currentQuestion.Question,
             style: const TextStyle(color: Colors.white),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 30),
-          ...currentQuestion.Answers.map((item){
+          ...currentQuestion.getShuffledAnswers().map((item){
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: AnswerButton(value: item ,onTap: (){}),
