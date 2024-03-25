@@ -5,7 +5,9 @@ import 'package:adv_basics/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreenView extends StatefulWidget {
-  const QuestionsScreenView({super.key});
+  const QuestionsScreenView({required this.onSelectAnswer, super.key});
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuestionsScreenView> createState() {
@@ -20,9 +22,12 @@ class _QuestionsScreenViewState extends State<QuestionsScreenView> {
 
   // Create a function to update our state that increments
   // the currentQuestionIndex vale. 
-  void answerQuestion() {
+  answerQuestion(String selectedAnswer) {
+
+    widget.onSelectAnswer(selectedAnswer);
     setState(() {
       currentQuestionIndex++;
+
     });
   }
   
@@ -48,7 +53,9 @@ class _QuestionsScreenViewState extends State<QuestionsScreenView> {
           ...currentQuestion.getShuffledAnswers().map((item){
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: AnswerButton(value: item ,onTap: answerQuestion),
+              child: AnswerButton(value: answer, onTap: (){
+                answerQuestion(answer);
+              },),
             );
           }),
         ],
