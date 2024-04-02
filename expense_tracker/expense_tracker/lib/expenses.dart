@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'models/expense.dart';
 
 
 
@@ -12,6 +13,20 @@ class Expenses extends StatefulWidget{
 }
 
 class _ExpensesState extends State<Expenses> {
+  final List<Expense> _registeredExpenses = [
+    Expense(
+      title: 'Flutter Course',
+      amount: 19.99,
+      date: DateTime.now(),
+      category: Category.work
+    ),
+    Expense(
+      title: 'Movie',
+      amount: 15.99,
+      date: DateTime.now(),
+      category: Category.leisure
+    ),
+  ];
 
   @override
   Widget build(BuildContext build){
