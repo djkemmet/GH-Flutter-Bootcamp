@@ -32,13 +32,13 @@ void dispose(){
             decoration: const InputDecoration(label:Text("Expense Name")),
           ),
           TextField(
-            keyboardType: TextInputType.numberWithOptions(),
+            keyboardType: const TextInputType.numberWithOptions(),
             controller: _amountController,
-            decoration: const InputDecoration(label: Text("Amount")),
+            decoration:  const InputDecoration(label: const Text("Amount"), prefixText:'\$',),
           ),
           Row(children:[
             ElevatedButton(onPressed: (){print(_titleController.text);print(_amountController.text);}, child: const Text("Save Expense")),
-            ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child:Text("Close"))
+            ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: const Text("Close"))
           ])
         ]
       ),
