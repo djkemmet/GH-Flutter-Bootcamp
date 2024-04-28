@@ -33,6 +33,16 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void _submitExpense() {
+    final enteredAmount = double.tryParse(_amountController.text);
+    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+    if (_titleController.text.trim().isEmpty ||
+        amountIsInvalid ||
+        _selectedDate == null) {
+      //Show Error Message
+    }
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
