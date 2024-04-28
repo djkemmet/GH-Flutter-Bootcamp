@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 
 class NewExpense extends StatefulWidget {
-  NewExpense({super.key});
+  const NewExpense({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() {
@@ -12,11 +14,14 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
+  // Class Properties - State Tracked.
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
   Category _selectedCategory = Category.leisure;
 
+  // Class Functions - Functions that help drive this widget and
+  // transact state.
   void _presentDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(1500, 1, 1);
@@ -40,9 +45,34 @@ class _NewExpenseState extends State<NewExpense> {
         amountIsInvalid ||
         _selectedDate == null) {
       //Show Error Message
-    }
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+            title: const Text("Invalid Input"),
+            content: const Text(
+                "Please make sure a valid title, amount, date, and category was entered."),
+            actions: [
+              TextButton(
+                child: const Text('Okay'),
+                onPressed: () {
+                  Navigator.pop(ctx);
+                },
+              ),
+            ]),
+      );
+      return;
+    } // ENDS IF CHECK FOR INVALID DATA.
+    widget.onAddExpense(
+      Expense(
+          title: _titleController.text,
+          amount: enteredAmount,
+          date: _selectedDate!,
+          category: _selectedCategory),
+    );
+    Navigator.of(context).pop();
   }
 
+// Class Overrides - Using the Flutter Framework.
   @override
   void dispose() {
     _titleController.dispose();
@@ -113,11 +143,10 @@ class _NewExpenseState extends State<NewExpense> {
           ),
           Spacer(),
           ElevatedButton(
-              onPressed: () {
-                print(_titleController.text);
-                print(_amountController.text);
-              },
-              child: const Text("Save Expense")),
+              onPressed: _submitExpense,
+              child: const Text(
+                "Save Expense",
+              )),
           ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
