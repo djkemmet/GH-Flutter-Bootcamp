@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'expenses.dart';
 
-void main(){
+void main() {
   runApp(
-     MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
-      home: Expenses()
-    ),
+    MaterialApp(
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        home: Expenses()),
   );
 }
