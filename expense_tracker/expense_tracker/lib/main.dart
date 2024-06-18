@@ -5,8 +5,9 @@ import 'expenses.dart';
 void main() {
   runApp(
     MaterialApp(
-        theme: ThemeData(
+        theme: ThemeData().copyWith(
           useMaterial3: true,
+          scaffoldBackgroundColor: Colors.red,
         ),
         home: const Expenses()),
   );
