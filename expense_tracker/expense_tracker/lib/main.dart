@@ -8,6 +8,6 @@ void main() {
         theme: ThemeData(
           useMaterial3: true,
         ),
-        home: Expenses()),
+        home: const Expenses()),
   );
 }
