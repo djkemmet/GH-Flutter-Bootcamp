@@ -141,7 +141,7 @@ class _NewExpenseState extends State<NewExpense> {
               }
             },
           ),
-          Spacer(),
+          const Spacer(),
           ElevatedButton(
               onPressed: _submitExpense,
               child: const Text(

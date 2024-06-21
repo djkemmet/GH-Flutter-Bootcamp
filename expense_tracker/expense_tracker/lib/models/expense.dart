@@ -32,3 +32,24 @@ class Expense {
     return formatter.format(date);
   }
 }
+
+class ExpenseBucket {
+  // Data Model Contrusctor
+  ExpenseBucket({
+    required this.category,
+    required this.expenses,
+  });
+
+  // Data Model Fields
+  final Category category;
+  final List<Expense> expenses;
+
+  double get totalExpenses {
+    double sum = 0;
+
+    for (final expense in expenses) {
+      sum += expense.amount;
+    }
+    return sum;
+  }
+}
