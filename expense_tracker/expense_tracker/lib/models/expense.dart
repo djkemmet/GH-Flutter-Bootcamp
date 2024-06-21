@@ -40,6 +40,12 @@ class ExpenseBucket {
     required this.expenses,
   });
 
+  // Add additional Constructor for this class.
+  ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
+      : expenses = allExpenses
+            .where((expense) => expense.category == category)
+            .toList();
+
   // Data Model Fields
   final Category category;
   final List<Expense> expenses;
