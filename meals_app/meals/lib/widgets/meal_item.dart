@@ -2,12 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+import 'package:meals/widgets/meal_item_trait.dart';
+
 class MealItem extends StatelessWidget {
   // Class Constructor
   const MealItem({super.key, required this.meal});
 
   // Class Fields
   final Meal meal;
+
+  // Class Functions
+  String get complexityText {
+    return meal.complexity.name[0].toUpperCase() +
+        meal.complexity.name.substring(1);
+  }
+
+  String get affordabilityText {
+    return meal.complexity.name[0].toUpperCase() +
+        meal.complexity.name.substring(1);
+  }
 
   // Class Override - Build Function
   @override
@@ -21,18 +34,19 @@ class MealItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {},
-        child: Stack(children: [
-          FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
-              fit: BoxFit.cover,
-              height: 200,
-              width: double.infinity),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
+        child: Stack(
+          children: [
+            FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(meal.imageUrl),
+                fit: BoxFit.cover,
+                height: 200,
+                width: double.infinity),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
                 padding: const EdgeInsets.symmetric(
                   vertical: 6,
                   horizontal: 44,
@@ -49,10 +63,27 @@ class MealItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.white)),
                   const SizedBox(height: 12),
-                  const Row(children: [])
-                ])),
-          )
-        ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    MealItemTrait(
+                      icon: Icons.schedule,
+                      label: '${meal.duration} min',
+                    ),
+                    const SizedBox(width: 12),
+                    const MealItemTrait(
+                      icon: Icons.work,
+                      label: 'ComplexityText}',
+                    ),
+                    const SizedBox(width: 12),
+                    MealItemTrait(
+                      icon: Icons.attach_money,
+                      label: affordabilityText,
+                    ),
+                  ])
+                ]),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
