@@ -6,10 +6,15 @@ import 'package:meals/widgets/meal_item_trait.dart';
 
 class MealItem extends StatelessWidget {
   // Class Constructor
-  const MealItem({super.key, required this.meal});
+  const MealItem({
+    super.key,
+    required this.meal,
+    required this.onSelectMeal,
+  });
 
   // Class Fields
   final Meal meal;
+  final void Function(Meal meal) onSelectMeal;
 
   // Class Functions
   String get complexityText {
@@ -33,7 +38,9 @@ class MealItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          onSelectMeal(meal);
+        },
         child: Stack(
           children: [
             FadeInImage(
