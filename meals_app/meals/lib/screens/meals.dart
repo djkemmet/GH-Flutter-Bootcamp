@@ -9,10 +9,10 @@ import 'package:meals/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
   // Class Constructor
-  const MealsScreen({super.key, required this.title, required this.meals});
+  MealsScreen({super.key, required this.meals});
 
   // Class Fields
-  final String title;
+  String? title;
   final List<Meal> meals;
 
   // Class Functions
@@ -56,8 +56,12 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
+    if (title == Null) {
+      return content;
+    }
+
     return Scaffold(
-      body: Scaffold(appBar: AppBar(title: Text(title)), body: content),
+      body: Scaffold(appBar: AppBar(title: Text(title!)), body: content),
     );
   }
 }
