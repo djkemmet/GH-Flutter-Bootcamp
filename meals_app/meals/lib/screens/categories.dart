@@ -9,9 +9,13 @@ import 'package:meals/screens/meals.dart';
 
 // Model Import
 import 'package:meals/models/category.dart';
+import 'package:meals/models/meal.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({super.key, required this.onToggleFavorite});
+
+  // Class Parameters
+  final void Function(Meal meal) onToggleFavorite;
 
   void _selectCategory(BuildContext context, Category category) {
     // Filter the list of dummy meals by returning meals whose catories match
@@ -21,7 +25,9 @@ class CategoriesScreen extends StatelessWidget {
         .toList();
 
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (ctx) => MealsScreen(meals: filteredMeals),
+      builder: (ctx) => MealsScreen(
+        meals: filteredMeals,
+      ),
     ));
   }
 
