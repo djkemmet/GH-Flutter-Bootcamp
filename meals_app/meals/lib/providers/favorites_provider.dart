@@ -1,21 +1,15 @@
-import 'package:flutter/material.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:meals/models/meal.dart';
 
-// Create a FavoriteMealsNotifier from StateNotifier for a
-//list of meal objects.
 class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
-  // Class Constructor = Itself is passed through directly to
-  // StateNotifier with the database it's supposed to mamnage.
   FavoriteMealsNotifier() : super([]);
 
-  //Methods that allow us to modify Data for This Notifier
   bool toggleMealFavoriteStatus(Meal meal) {
     final mealIsFavorite = state.contains(meal);
 
     if (mealIsFavorite) {
-      state.where((m) => m.id != meal.id).toList();
+      state = state.where((m) => m.id != meal.id).toList();
       return false;
     } else {
       state = [...state, meal];
@@ -24,7 +18,7 @@ class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
   }
 }
 
-var favoriteMealsProvider =
+final favoriteMealsProvider =
     StateNotifierProvider<FavoriteMealsNotifier, List<Meal>>((ref) {
   return FavoriteMealsNotifier();
 });
